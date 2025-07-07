@@ -1,4 +1,4 @@
-package com.shettyharshith33.departments.bcomStaffs
+package com.shettyharshith33.departments.economicsStaffs
 
 import com.shettyharshith33.departments.bcaStaffs.ShimmerTeacherCard
 import com.shettyharshith33.departments.bcaStaffs.Teacher
@@ -36,7 +36,7 @@ import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 import com.shettyharshith33.vcputtur.ui.theme.textColor
 
 @Composable
-fun BCOMTeacherListScreen(
+fun EconomicsTeacherListScreen(
     viewModel: TeacherViewModel = viewModel(), navController: NavController
 ) {
     SetStatusBarColor(lightDodgerBlue, false)
@@ -46,7 +46,7 @@ fun BCOMTeacherListScreen(
     var selectedTeacher by remember { mutableStateOf<Teacher?>(null) }
 
     LaunchedEffect(Unit) {
-        viewModel.fetchBCOMTeachers()
+        viewModel.fetchHistoryTeachers()
     }
 
     LazyColumn(
@@ -58,7 +58,7 @@ fun BCOMTeacherListScreen(
         item {
             Spacer(modifier = Modifier.height(40.dp))
             Text(
-                "BCOM - Faculties",
+                "Economics - Faculties",
                 fontSize = 20.sp,
                 fontFamily = poppinsFontFamily,
                 fontWeight = FontWeight.Bold,
@@ -89,7 +89,7 @@ fun BCOMTeacherListScreen(
 
 
         else {
-            items(teachers.sortedByDescending { it.experience.toIntOrNull() ?: 0 }) { teacher ->
+            items(teachers.reversed()) { teacher ->
                 TeacherCard(teacher) {
                     selectedTeacher = teacher
                 }

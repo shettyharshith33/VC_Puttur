@@ -1,13 +1,10 @@
 package com.shettyharshith33.afterLoginScreens
 
 import SetStatusBarColor
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,7 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigationObject
+import com.shettyharshith33.utils.BeforeLoginScreensNavigationObject
 import com.shettyharshith33.utils.CgpaResult
 import com.shettyharshith33.vcputtur.ui.theme.*
 

@@ -1,7 +1,5 @@
-package com.shettyharshith33.beforeLoginScreens
+package com.shettyharshith33.unused
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -45,17 +43,16 @@ import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import com.shettyharshith33.utils.BeforeLoginScreensNavigationObject
 import com.shettyharshith33.vcputtur.R
 import com.shettyharshith33.vcputtur.ui.theme.buttonYellow
 import com.shettyharshith33.vcputtur.ui.theme.textColor
 import com.shettyharshith33.vcputtur.ui.theme.themeBlue
+import com.shettyharshith33.viewmodels.AuthViewModel
 import java.util.concurrent.TimeUnit
 
 

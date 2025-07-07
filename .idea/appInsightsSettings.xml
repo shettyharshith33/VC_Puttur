@@ -17,10 +17,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.shettyharshith33.vcputtur" />
-                  <option name="mobileSdkAppId" value="1:616988034417:android:30f5c09fdf92b5d71162d0" />
-                  <option name="projectId" value="vc-puttur-bd57b" />
-                  <option name="projectNumber" value="616988034417" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

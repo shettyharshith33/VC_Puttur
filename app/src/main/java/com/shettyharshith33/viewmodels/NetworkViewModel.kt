@@ -1,4 +1,4 @@
-package com.shettyharshith33.beforeLoginScreens
+package com.shettyharshith33.viewmodels
 
 
 import android.app.Application

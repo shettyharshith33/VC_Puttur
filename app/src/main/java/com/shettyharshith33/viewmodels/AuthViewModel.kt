@@ -1,7 +1,5 @@
-package com.shettyharshith33.beforeLoginScreens
+package com.shettyharshith33.viewmodels
 
-import android.content.Context
-import android.content.Intent
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "616988034417",
+    "firebase_url": "https://vc-puttur-bd57b-default-rtdb.firebaseio.com",
+    "project_id": "vc-puttur-bd57b",
+    "storage_bucket": "vc-puttur-bd57b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616988034417:android:30f5c09fdf92b5d71162d0",
+        "android_client_info": {
+          "package_name": "com.shettyharshith33.vcputtur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616988034417-nsfi57550hvn7l37bg12hter1rnde9br.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shettyharshith33.vcputtur",
+            "certificate_hash": "e949508f5ed4895fa648225b808fcce63b54b6d4"
+          }
+        },
+        {
+          "client_id": "616988034417-dk6eet0h7edmn8icv307823vlhvgcjak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa0kiY3_Yv8Q9_KuLzT-Up1jXFKK8gbwc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616988034417-dk6eet0h7edmn8icv307823vlhvgcjak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

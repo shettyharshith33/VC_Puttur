@@ -14,14 +14,3 @@ interface AuthRepository {
         authUser: AuthUser
     ): Flow<ResultState<String>>
 }
-
-
-//    fun createUserWithPhone(
-//        phone:String,
-//        activity:Activity
-//    ) :Flow<ResultState<String>>
-//
-//
-//    fun signInWithCredential(
-//        otp:String) :Flow<ResultState<String>>
-//}

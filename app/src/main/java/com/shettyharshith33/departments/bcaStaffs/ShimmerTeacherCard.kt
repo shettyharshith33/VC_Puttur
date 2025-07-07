@@ -1,4 +1,4 @@
-package com.shettyharshith33.beforeLoginScreens.departments.bcaStaffs
+package com.shettyharshith33.departments.bcaStaffs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,12 +16,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.shettyharshith33.vcputtur.ui.theme.myGrey
+import com.shettyharshith33.vcputtur.ui.theme.shimmerGrey
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import com.valentinilk.shimmer.shimmer
@@ -42,6 +44,9 @@ fun ShimmerTeacherCard(teacher: Teacher) {
                 .fillMaxWidth()
                 .height(80.dp)
                 .shimmer(shimmerInstance),
+            colors = CardDefaults.cardColors().copy(
+                containerColor = Color.LightGray
+            ),
             shape = RoundedCornerShape(8.dp)
         ) {
             Row(
@@ -53,9 +58,9 @@ fun ShimmerTeacherCard(teacher: Teacher) {
                 // Circle shimmer for teacher profile picture
                 Box(
                     modifier = Modifier
-                        .size(64.dp)
+                        .size(65.dp)
                         .clip(CircleShape)
-                        .background(myGrey)
+                        .background(shimmerGrey)
                 )
 
                 Spacer(modifier = Modifier.width(12.dp))
@@ -70,7 +75,7 @@ fun ShimmerTeacherCard(teacher: Teacher) {
                             .width(120.dp)
                             .height(14.dp)
                             .clip(RoundedCornerShape(4.dp))
-                            .background(myGrey)
+                            .background(shimmerGrey)
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
@@ -80,7 +85,7 @@ fun ShimmerTeacherCard(teacher: Teacher) {
                             .width(80.dp)
                             .height(12.dp)
                             .clip(RoundedCornerShape(4.dp))
-                            .background(myGrey)
+                            .background(shimmerGrey)
                     )
                 }
             }

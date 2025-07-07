@@ -102,46 +102,4 @@ class AuthRepositoryImpl @Inject constructor(
 
         awaitClose { close() }
     }
-
-//    override fun createUserWithPhone(phone: String, activity: Activity): Flow<ResultState<String>> = callbackFlow {
-//        trySend(ResultState.Loading)
-//        val onVerificationCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-//                trySend(ResultState.Success("Auto Verification Successful"))
-//            }
-//
-//            override fun onVerificationFailed(exception: FirebaseException) {
-//                trySend(ResultState.Failure(exception))
-//            }
-//
-//            override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
-//                super.onCodeSent(verificationId, token)
-//                onVerificationCode = verificationId
-//                trySend(ResultState.Success("OTP Sent Successfully"))
-//            }
-//        }
-//        val options = PhoneAuthOptions.newBuilder(authDb)
-//            .setPhoneNumber(phone)
-//            .setTimeout(60L, java.util.concurrent.TimeUnit.SECONDS)
-//            .setActivity(activity)
-//            .setCallbacks(onVerificationCallback)
-//            .build()
-//        PhoneAuthProvider.verifyPhoneNumber(options)
-//        awaitClose { close() }
-//    }
-//
-//    override fun signInWithCredential(otp: String): Flow<ResultState<String>> = callbackFlow {
-//        trySend(ResultState.Loading)
-//        val credential = PhoneAuthProvider.getCredential(onVerificationCode, otp)
-//        authDb.signInWithCredential(credential)
-//            .addOnCompleteListener {
-//                if (it.isSuccessful) {
-//                    trySend(ResultState.Success("Verified Successfully"))
-//                }
-//            }
-//            .addOnFailureListener {
-//                trySend(ResultState.Failure(it))
-//            }
-//        awaitClose { close() }
-//    }
 }

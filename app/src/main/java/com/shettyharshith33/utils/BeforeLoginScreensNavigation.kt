@@ -1,27 +1,35 @@
-package com.shettyharshith33.beforeLoginScreens
+package com.shettyharshith33.utils
 
+import LoginScreen
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.shettyharshith33.afterLoginScreens.AcademicsScreen
 import com.shettyharshith33.afterLoginScreens.AdmissionsScreen
 import com.shettyharshith33.afterLoginScreens.CgpaCalculatorScreen
 import com.shettyharshith33.afterLoginScreens.DepartmentsScreen
 import com.shettyharshith33.afterLoginScreens.Gallery
 import com.shettyharshith33.afterLoginScreens.HomeScreen
-import com.shettyharshith33.beforeLoginScreens.departments.bcaStaffs.TeacherListScreen
-import com.shettyharshith33.teachersScreens.TeachersHomeScreen
-import com.shettyharshith33.teachersScreens.TeachersLogin
+import com.shettyharshith33.beforeLoginScreens.AuthCheckScreen
+import com.shettyharshith33.beforeLoginScreens.ConfirmLogin
+import com.shettyharshith33.beforeLoginScreens.EmailLinkSentPage
+import com.shettyharshith33.beforeLoginScreens.OnBoardingScreen
+import com.shettyharshith33.beforeLoginScreens.SignUpScreen
+import com.shettyharshith33.beforeLoginScreens.TeacherHomeScreen
+import com.shettyharshith33.beforeLoginScreens.TeacherLoginScreen
+import com.shettyharshith33.beforeLoginScreens.TeacherValidationScreen
+import com.shettyharshith33.departments.bcaStaffs.BCATeacherListScreen
+import com.shettyharshith33.departments.bcomStaffs.BCOMTeacherListScreen
+import com.shettyharshith33.departments.historyStaffs.HistoryTeacherListScreen
 import com.shettyharshith33.ugCourses.BA
 import com.shettyharshith33.ugCourses.BBA
 import com.shettyharshith33.ugCourses.BCA
 import com.shettyharshith33.ugCourses.BCOM
 import com.shettyharshith33.ugCourses.BSC
+import com.shettyharshith33.viewmodels.NetworkViewModel
 
 
 object BeforeLoginScreensNavigationObject {
@@ -44,11 +52,31 @@ object BeforeLoginScreensNavigationObject {
     const val ACADEMICS_SCREEN = "academicsScreen"
     const val DEPARTMENTS = "departments"
 
-    const val TEACHER_LIST_SCREEN = "teacherListScreen"
+    const val BCA_TEACHER_LIST_SCREEN = "bcaTeacherListScreen"
 
-    const val TEACHERS_LOGIN = "teachersLogin"
-//    const val TEACHERS_HOME_SCREEN = "teachersHomeScreen"
-    const val TEACHERS_HOME_SCREEN = "teachers_home_screen/{uid}"
+
+    const val BCOM_TEACHER_LIST_SCREEN = "bcomTeacherListScreen"
+
+
+    const val HISTORY_TEACHER_LIST_SCREEN = "historyTeacherListScreen"
+
+
+    const val TEACHER_LOGIN_SCREEN = "teacherLoginScreen"
+
+
+    const val TEACHER_VALIDATION_SCREEN = "teacherValidationScreen"
+
+
+    const val TEACHER_HOME_SCREEN = "teacherHomeScreen/{loginEmail}"
+
+
+    const val CONFIRM_TEACHER_LOGIN = "confirmTeacherLogin"
+
+
+
+
+
+
 
 
 }
@@ -76,7 +104,7 @@ fun BeforeLoginScreensNavigation(navController: NavController) {
             LoginScreen(navController)
         }
         composable(route = BeforeLoginScreensNavigationObject.HOME_SCREEN) {
-            HomeScreen(navController)
+            HomeScreen(navController, viewModel = viewModel())
         }
         composable(route = BeforeLoginScreensNavigationObject.EMAIL_LINK_SENT_PAGE) {
             EmailLinkSentPage(navController)
@@ -111,24 +139,35 @@ fun BeforeLoginScreensNavigation(navController: NavController) {
         composable(route = BeforeLoginScreensNavigationObject.DEPARTMENTS) {
             DepartmentsScreen(navController)
         }
-        composable(route = BeforeLoginScreensNavigationObject.TEACHERS_LOGIN) {
-            TeachersLogin(navController)
+        composable(route = BeforeLoginScreensNavigationObject.BCA_TEACHER_LIST_SCREEN) {
+            BCATeacherListScreen(viewModel = viewModel(), navController)
         }
-        composable(route = BeforeLoginScreensNavigationObject.TEACHER_LIST_SCREEN) {
-            TeacherListScreen(viewModel = viewModel(),navController)
+        composable(route = BeforeLoginScreensNavigationObject.BCOM_TEACHER_LIST_SCREEN) {
+            BCOMTeacherListScreen(viewModel = viewModel(), navController)
         }
-
-//        composable(route = BeforeLoginScreensNavigationObject.TEACHERS_HOME_SCREEN) {
-//            TeachersHomeScreen(navController)
+        composable(route = BeforeLoginScreensNavigationObject.HISTORY_TEACHER_LIST_SCREEN) {
+            HistoryTeacherListScreen(viewModel = viewModel(), navController)
+        }
+        composable(route = BeforeLoginScreensNavigationObject.CONFIRM_TEACHER_LOGIN) {
+            ConfirmLogin(onDismiss = {},navController)
+        }
+        composable(route = BeforeLoginScreensNavigationObject.TEACHER_LOGIN_SCREEN) {
+            TeacherLoginScreen(navController)
+        }
+        composable(route = BeforeLoginScreensNavigationObject.TEACHER_VALIDATION_SCREEN) {
+            TeacherValidationScreen(navController)
+        }
+//        composable(route = BeforeLoginScreensNavigationObject.TEACHER_HOME_SCREEN) {
+//            TeacherHomeScreen(loginEmail = "",navController)
 //        }
 
         composable(
-            route = BeforeLoginScreensNavigationObject.TEACHERS_HOME_SCREEN,
-            arguments = listOf(navArgument("uid") { type = NavType.StringType })
+            route = BeforeLoginScreensNavigationObject.TEACHER_HOME_SCREEN
         ) { backStackEntry ->
-            val uid = backStackEntry.arguments?.getString("uid") ?: ""
-            TeachersHomeScreen(navController = navController, uid = uid)
+            val loginEmail = backStackEntry.arguments?.getString("loginEmail") ?: ""
+            TeacherHomeScreen(loginEmail = loginEmail, navController)
         }
+
 
     }
 }

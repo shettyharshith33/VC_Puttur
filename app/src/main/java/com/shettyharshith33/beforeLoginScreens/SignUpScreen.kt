@@ -1,5 +1,10 @@
 package com.shettyharshith33.beforeLoginScreens
 
+
+//-------------------SignUp Screen---------------
+
+
+//Necessary Imports
 import android.content.Context
 import android.os.Build
 import android.os.VibrationEffect
@@ -54,18 +59,22 @@ import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.shettyharshith33.firebaseAuth.AuthUser
+import com.shettyharshith33.utils.BeforeLoginScreensNavigationObject
 import com.shettyharshith33.utils.ResultState
 import com.shettyharshith33.vcputtur.R
 import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.myGreen
 import com.shettyharshith33.vcputtur.ui.theme.netWorkRed
 import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
+import com.shettyharshith33.viewmodels.AuthViewModel
+import com.shettyharshith33.viewmodels.NetworkViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
 @Composable
+//Composable Function for SignUp Screen
 fun SignUpScreen(
     navController: NavController,
     viewModel: AuthViewModel = hiltViewModel()
@@ -82,7 +91,7 @@ fun SignUpScreen(
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
-    var passwordVisible by remember {mutableStateOf(false)}
+    var passwordVisible by remember { mutableStateOf(false) }
 
     if (isDialog) {
         Dialog(onDismissRequest = {}) {
@@ -97,10 +106,12 @@ fun SignUpScreen(
         verticalArrangement = Arrangement.Top
     ) {
         Spacer(modifier = Modifier.height(screenHeight * 0.08f))
-//        NetworkStatusBanner(isConnected = true)
+
+        //NetworkStatusBanner(isConnected = true)
 
         Spacer(modifier = Modifier.height(10.dp))
 
+        //College Name Header Text
 
         Text(
             "Vivekananda College of",
@@ -126,7 +137,7 @@ fun SignUpScreen(
         Spacer(modifier = Modifier.height(10.dp))
         Image(
             modifier = Modifier.size(80.dp),
-            painter = painterResource(R.drawable.collegelogo),
+            painter = painterResource(R.drawable.collegelogo), //College Logo Composable
             contentDescription = ""
         )
         Spacer(modifier = Modifier.height(50.dp))
@@ -146,7 +157,7 @@ fun SignUpScreen(
             fontWeight = FontWeight.W500
         )
         Spacer(modifier = Modifier.height(10.dp))
-        OutlinedTextField(
+        OutlinedTextField(      //Text Field for Accepting Email
             modifier = Modifier
                 .border(
                     0.5.dp, dodgerBlue,
@@ -176,7 +187,7 @@ fun SignUpScreen(
             fontWeight = FontWeight.W500
         )
         Spacer(modifier = Modifier.height(10.dp))
-        OutlinedTextField(
+        OutlinedTextField(      //Text Field for Accepting Password
             modifier = Modifier
                 .border(
                     0.5.dp, dodgerBlue,
@@ -199,12 +210,12 @@ fun SignUpScreen(
             },
             trailingIcon = {
                 val icon = if (passwordVisible)
-                    R.drawable.visibilty
+                    R.drawable.visibilty            //Password Visibility Button / Icon   -   Eye Open
                 else
-                    R.drawable.visibilty_off
+                    R.drawable.visibilty_off       //Password Visibility Button / Icon   -   Eye Closed
 
                 Image(painterResource(icon), contentDescription = "",
-                    modifier = Modifier.clickable { passwordVisible =!passwordVisible })
+                    modifier = Modifier.clickable { passwordVisible = !passwordVisible })
             },
             colors = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = if (passwordError) Color.Red else dodgerBlue,
@@ -212,13 +223,14 @@ fun SignUpScreen(
             )
         )
         Spacer(modifier = Modifier.height(10.dp))
+        //Create Account Button
         Button(
             onClick = {
                 if (eMail.isEmpty() || password.isEmpty()) {
                     haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     emailError = true
                     passwordError = true
-                    context.showMsg("Email and Password cannot be empty")
+                    context.showMsg("Email and Password cannot be empty")       //Haptic Feedback To Warn User to Fill Out All Fields
                     triggerVibration(context)
                     return@Button
                 }
@@ -230,12 +242,13 @@ fun SignUpScreen(
                                 val firebaseUser = viewModel.getCurrentUser()
                                 firebaseUser?.let { user ->
                                     user.sendEmailVerification().addOnCompleteListener { task ->
-                                        if (task.isSuccessful)
-                                        {
-                                            context.showMsg("Check your mail for verification")
-                                            navController.navigate(BeforeLoginScreensNavigationObject.EMAIL_LINK_SENT_PAGE)
+                                        if (task.isSuccessful) {
+                                            context.showMsg("Check your mail for verification")     //Toast to Inform User That Email is Sent
+                                            navController.navigate(
+                                                BeforeLoginScreensNavigationObject.EMAIL_LINK_SENT_PAGE
+                                            )
                                         } else {
-                                            context.showMsg("Failed to send verification email. Try again.")
+                                            context.showMsg("Failed to send verification email. Try again.")     //Toast to Inform User That Email is Not Sent
                                         }
                                     }
                                 }
@@ -243,7 +256,7 @@ fun SignUpScreen(
 
                             is ResultState.Failure -> {
                                 isDialog = false
-                                context.showMsg(result.msg?.message ?: "An error occurred")
+                                context.showMsg(result.msg?.message ?: "An error occurred") //Error Sending Email
                             }
 
                             is ResultState.Loading -> {
@@ -264,43 +277,11 @@ fun SignUpScreen(
         Spacer(modifier = Modifier.height(10.dp))
         // Get screen width and height
         val configuration = LocalConfiguration.current
-        val screenWidth = configuration.screenWidthDp.dp
-        val screenHeight = configuration.screenHeightDp.dp
-        // Sign-in with Google Button
-
-//
-//        Button(
-//            modifier = Modifier
-//                .fillMaxWidth(0.8f)
-//                .height(screenHeight * 0.06f)
-//                .border(0.5.dp, Color.Transparent, shape = RoundedCornerShape(5.dp))
-//                .widthIn(max = 400.dp),
-//            onClick = {
-//                context.showMsg("Currently Unavailable")
-//                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-//                triggerVibration(context)
-//                return@Button
-//            },
-//            shape = RoundedCornerShape(5.dp),
-//            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
-//        ) {
-//            Text(
-//                "Sign-Up with Google",
-//                color = Color.Black,
-//                fontSize = (screenWidth.value * 0.04f).sp
-//            )
-//            Spacer(modifier = Modifier.width(10.dp))
-//            Icon(
-//                painterResource(R.drawable.googlelogo),
-//                contentDescription = null,
-//                tint = Color.Unspecified
-//            )
-//        }
-
     }
 }
 
 
+// Network Status Banner To Show User Is Online / Offline
 @Composable
 fun NetworkStatusBanner(isConnected: Boolean) {
     var showBackOnlineMessage by remember { mutableStateOf(false) }
@@ -383,6 +364,7 @@ fun NetworkStatusBanner(isConnected: Boolean) {
 }
 
 
+//Function for Triggering Vibration / Haptic Feedback
 fun triggerVibration(context: Context) {
     val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
