@@ -210,6 +210,7 @@ fun HomeScreen(navController: NavController,viewModel: NetworkViewModel)
                     actionIconContentColor = lightDodgerBlue
                 ), title = {
                     Text(
+                        //Just a demo comment
                         text = "VC Puttur",
                         modifier = Modifier
                             .fillMaxWidth()
